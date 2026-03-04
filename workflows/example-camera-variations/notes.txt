@@ -1,0 +1,7 @@
+- Tiene 3 secciones: INPUT IMAGE, PROMPTING, y GENERACION (Nano Banana Pro + Seedream)
+- El Prompt Concatenator combina el system prompt con las instrucciones del usuario
+- Hay un nodo "User simple instructions" para override rapido
+- Modelos de imagen: Gemini 3 (Nano Banana Pro) y Seedream v4.5 Edit
+- Output: grid 3x3 sin bordes entre las celdas
+- Limite de 10,000 caracteres en output total del LLM
+- Para dudas sobre estructura de variaciones, ver secciones VARIATION DISTRIBUTION MANDATE y OUTPUT OPTIMIZATION RULES del system prompt
