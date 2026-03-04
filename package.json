@@ -1,0 +1,15 @@
+{
+  "name": "pixelflakes-slack-agent",
+  "version": "1.0.0",
+  "description": "Pixelflakes Weavy Agent - Bot de Slack con Claude AI",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@slack/bolt": "^4.1.0",
+    "dotenv": "^16.4.0"
+  }
+}
