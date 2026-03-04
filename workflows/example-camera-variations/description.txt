@@ -1,0 +1,1 @@
+Workflow de generacion de variaciones cinematograficas. Toma una imagen de referencia arquitectonica y genera 9 variaciones con diferentes angulos de camara, iluminacion y atmosfera usando un grid 3x3. Usa Gemini 3 (Nano Banana Pro) y Seedream v4.5 como modelos de imagen.
