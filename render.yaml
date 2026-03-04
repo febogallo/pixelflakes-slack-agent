@@ -1,0 +1,23 @@
+services:
+  - type: worker
+    name: pixelflakes-slack-agent
+    runtime: node
+    buildCommand: npm install
+    startCommand: node app.js
+    envVars:
+      - key: SLACK_BOT_TOKEN
+        sync: false
+      - key: SLACK_APP_TOKEN
+        sync: false
+      - key: SLACK_SIGNING_SECRET
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CLAUDE_MODEL
+        value: claude-sonnet-4-5-20250929
+      - key: MAX_TOKENS
+        value: 4096
+      - key: DEDICATED_CHANNEL
+        value: ask-aihelp
+      - key: REPLY_IN_THREAD
+        value: true
