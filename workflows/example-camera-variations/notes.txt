@@ -1,7 +1,38 @@
-- Tiene 3 secciones: INPUT IMAGE, PROMPTING, y GENERACION (Nano Banana Pro + Seedream)
-- El Prompt Concatenator combina el system prompt con las instrucciones del usuario
-- Hay un nodo "User simple instructions" para override rapido
-- Modelos de imagen: Gemini 3 (Nano Banana Pro) y Seedream v4.5 Edit
-- Output: grid 3x3 sin bordes entre las celdas
-- Limite de 10,000 caracteres en output total del LLM
-- Para dudas sobre estructura de variaciones, ver secciones VARIATION DISTRIBUTION MANDATE y OUTPUT OPTIMIZATION RULES del system prompt
+WORKFLOW NAME: PF-CREATE_EXTRA_CAMERAS
+
+WORKFLOW STRUCTURE (3 sections):
+1. INPUT IMAGE - File node where user uploads reference image/render
+2. PROMPTING - Contains 3 nodes:
+   - "user prompt" (JSON format with variation parameters and rules)
+   - "system prompt" (Camera Variations Generator V3 - the main detailed instructions)
+   - "User simple instructions" (optional override for quick custom instructions)
+   - "Prompt Concatenator" (combines system + user prompts into final prompt)
+3. GENERATION - Two parallel image generation models:
+   - Gemini 3 (Nano Banana Pro) - receives the LLM output + reference image
+   - Seedream v4.5 Edit - receives the LLM output + reference image
+
+INPUT: Always an image or architectural render
+OUTPUT: 3x3 grid image (9 cells, no borders) from each model (Nano Banana Pro and Seedream)
+
+KEY TECHNICAL DETAILS:
+- LLM output limit: 10,000 characters total
+- Each variation block: ~600-800 characters ideal
+- Aspect ratio: always 16:9
+- The LLM generates text prompts, NOT images directly
+- The text prompts then feed into Nano Banana Pro and Seedream to generate the actual images
+
+TWO PROMPTS IN THIS WORKFLOW:
+- User Prompt: JSON structure defining variation parameters, rules, and output format
+- System Prompt: Detailed V3 instructions covering cinematography, lighting, camera specs, distribution mandates
+
+COMMON ISSUES:
+- If grid has visible borders/lines between cells: Check that the grid specifications section is being included in the output
+- If variations look too similar: The distribution mandate section ensures variety - verify it's being followed
+- If output is truncated: The 10,000 character limit may be too tight - check for verbose descriptions
+- If scene elements change between variations: The "constants" rules are not being respected - reinforce in user instructions
+- If the Prompt Concatenator output looks wrong: Verify both user prompt and system prompt nodes are connected properly
+
+TIPS:
+- Use "User simple instructions" node for quick overrides without modifying the main prompts
+- Compare Nano Banana Pro vs Seedream outputs to pick the best model for each project
+- The system prompt has example formatting (efficient vs inefficient) - useful for training team members
